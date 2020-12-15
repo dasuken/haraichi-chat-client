@@ -8,7 +8,7 @@
               contactless
             </v-icon>
           </v-avatar>
-          <span class="font-weight-black text-h5 yellow--text darken-4">HARAICHOHU</span>
+          <span class="font-weight-black text-h5 yellow--text darken-4">ハライチ チャット</span>
         </h1>
       </router-link>
     </v-card-title>

@@ -7,7 +7,7 @@
           <v-col cols="11">
             <div class="white--text mplus text-h4 mb-10">コーナーメールを投稿しよう！</div>
             <div class="white--text text-h6 font-weight-black mb-3">
-              はらいちょふの集いとは？
+              ハライチチャットとは？
             </div>
             <div class="white--text text-subtitle-2 font-weight-black">
               <div>

@@ -28,12 +28,7 @@ export const GET_RADIO = gql`
       times
       createdAt
       broadCastingDate
-      # themes {
-      #   _id
-      #   title
-      #   thumbnail
-      #   description
-      # }
+      youtubeUrl
     }
   }
 `

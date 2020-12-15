@@ -1,0 +1,63 @@
+<template>
+  <v-app style="background-color: #F8F7F7!important;">
+    <Nav></Nav>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
+    <Footer></Footer>
+  </v-app>
+</template>
+
+<script>
+import Nav from '@/components/Nav'
+import Footer from '@/components/Footer'
+
+export default {
+  name: 'App',
+  components: { Nav, Footer },
+};
+</script>
+
+<style lang="scss">
+a {
+  text-decoration: none;
+  color: inherit!important;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.25s;
+  transform: translateX(100px);
+  opacity: 0;
+}
+
+.fade-enter-active {
+  transition-delay: 0.25s;
+}
+
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-half {
+  width: 50%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.opacity-50 {
+  opacity: .5;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+</style>

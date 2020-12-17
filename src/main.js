@@ -16,6 +16,11 @@ Vue.filter('formatDate', (value) => {
   return value.split('T')[0]
 })
 
+Vue.filter('formatDateTime', (value) => {
+  if(!value) return
+  return value.split(".")[0]
+})
+
 Vue.filter('formatErrorMessage', (value) => {
   if (!value) return
   return value.replace('GraphQL error:', '')

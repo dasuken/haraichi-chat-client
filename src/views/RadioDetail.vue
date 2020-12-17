@@ -60,7 +60,7 @@
           <div class="themeCards mt-5">
             <h2 class="mb-2 font-weight-black px-3">今週のコーナー</h2>
             <div style="overflow-y: scroll" class="d-flex">
-              <v-col cols="7" sm="5" v-for="theme in themes" :key="theme._id">
+              <v-col cols="7" md="5" v-for="theme in themes" :key="theme._id">
                 <v-hover v-slot:default="{ hover }">
                   <v-card
                     elevation="6"

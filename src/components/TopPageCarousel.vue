@@ -24,7 +24,8 @@
               </div>
             </div>
             <div class="white--text font-weight-black text-subtitle-2 mt-5">そんなメールを共有するハライチのターンまとめサイトです。</div>
-            <v-btn color="black" small class="white--text mplus" :to="`/radio/${latestRadioId}`" >
+            <v-btn color="orange" class="white--text mplus" :to="`/radio/${latestRadioId}`" >
+              <v-icon>keyboard_arrow_right</v-icon>
               今週のラジオへ
             </v-btn>
           </v-col>

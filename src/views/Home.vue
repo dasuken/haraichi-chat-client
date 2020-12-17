@@ -17,7 +17,7 @@
 
               <!-- 普通のラジオ一覧 -->
               <v-row>
-                <v-col cols="12" sm="6" v-for="radio in radios" :key=radio._id>
+                <v-col cols="12" sm="6" md="12" v-for="radio in radios" :key=radio._id>
                   <RadioCard :radio="radio" :latestRadioId="radios[0]._id" />
                 </v-col>
               </v-row>

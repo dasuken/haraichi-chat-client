@@ -8,20 +8,15 @@
               contactless
             </v-icon>
           </v-avatar>
-          <span class="font-weight-black text-h5 yellow--text darken-4">ハライチのターン！チャット</span>
+          <div class="logo-font yellow--text darken-2">ハライチのはがき置き場</div>
         </h1>
       </router-link>
     </v-card-title>
   </v-card>
 </template>
 
-
-<script>
-  export default {
-    data () {
-      return {
-
-      }
-    },
+<style lang="scss" scoped>
+  .logo-font {
+    font-family: Corporate-Logo-Rounded!important;
   }
-</script>
+</style>

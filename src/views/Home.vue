@@ -3,7 +3,7 @@
     <TopPageCarousel :latestRadioId="latestRadioId" />
     <v-container>
       <v-row justify="center">
-        <v-col cols="12" md="10">
+        <v-col cols="10">
           <v-row justify="space-between">
             <v-col cols="12" md="8" class="mb-10" radio style="position: relative;">
               <div v-if="loading" class="d-flex align-center justify-center" style="position: absolute; z-index: 100; width: 100%; margin-top: 30px;">

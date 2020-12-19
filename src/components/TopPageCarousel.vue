@@ -26,7 +26,6 @@
                 </v-btn>
               </v-col>
               <v-col cols="12" sm="6">
-                <!-- <v-img src="https://tensaidesign.com/wp-content/uploads/tbsradio_haraichi_tmb.png" aspect-ratio="1" style="border-radius: 50%;"></v-img> -->
                 <v-img src="https://www.tokyoheadline.com/wp-content/uploads/haraichi.jpg" aspect-ratio="1.3" class="rounded-xl"></v-img>
               </v-col>
             </v-row>
@@ -40,7 +39,7 @@
 
 <script>
   export default {
-    props: ['latestRadioId']
+    props: ['latestRadioId'],
   }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <v-card color="basil" dark tile>
-    <v-card-title class="text-center justify-center">
+    <v-card-title class="text-center">
       <router-link to="/">
         <h3 class="d-flex align-center">
           <v-avatar color="white" size="30" class="mr-2">

@@ -70,7 +70,7 @@ export default {
   components: {
     ErrorMessage,
   },
-  setup() {
+  setup(_, { root }) {
     // ordinary state
     const form = ref(null);
     const themeId = ref("");
@@ -97,6 +97,7 @@ export default {
         radioName: radioName.value,
         message: message.value,
         themeId: themeId.value,
+        userId: root.$store.getters['userId']
       },
       update: (cache, { data: { createComment } }) => {
         const data = cache.readQuery({

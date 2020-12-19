@@ -67,6 +67,7 @@ export const GET_THEME_COMMENTS = gql`
         likes
         radioName
         createdAt
+        userId
         message
       }
     }
@@ -76,8 +77,8 @@ export const GET_THEME_COMMENTS = gql`
 // mutation
 
 export const CREATE_COMMENT = gql `
-  mutation($radioName: String!, $message: String!, $themeId: ID!) {
-    createComment(data: { radioName: $radioName, message: $message, themeId: $themeId}) {
+  mutation($radioName: String!, $message: String!, $themeId: ID!, $userId: ID) {
+    createComment(data: { radioName: $radioName, message: $message, themeId: $themeId, userId: $userId}) {
       _id
       message
       radioName

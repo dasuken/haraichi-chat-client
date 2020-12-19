@@ -4,7 +4,14 @@
       <div class="d-flex justify-space-between">
         <div>
           <span class="grey--text text-caption mr-2">RN: </span>
-          <v-chip dark small class="text-subtitle-2 font-weight-semibold">{{ comment.radioName }}</v-chip>
+          <v-chip
+            dark
+            small
+            class="text-subtitle-2 font-weight-semibold"
+            :class="{'orange': checkIfUserComment}"
+          >
+            {{ comment.radioName }}
+          </v-chip>
         </div>
         <div class="text-caption grey--text">
           {{ comment.createdAt | formatDateTime }}
@@ -35,6 +42,7 @@
 import { mapGetters } from "vuex";
 import { LIKE_COMMENT, UNLIKE_COMMENT } from "@/queries.js"
 import { useMutation } from '@vue/apollo-composable'
+import { computed } from '@vue/composition-api'
 
   export default {
     props: {
@@ -43,7 +51,7 @@ import { useMutation } from '@vue/apollo-composable'
     computed: {
       ...mapGetters(["likedCommentIds"]),
     },
-    setup(props) {
+    setup(props, { root }) {
       const { mutate: unlikeComment } = useMutation(UNLIKE_COMMENT, { variables: { commentId: props.comment._id } })
       const { mutate: likeComment }   = useMutation(LIKE_COMMENT, { variables: { commentId: props.comment._id } })
 
@@ -65,7 +73,9 @@ import { useMutation } from '@vue/apollo-composable'
         return this.likedCommentIds && this.likedCommentIds.includes(commentId)
       }
 
-      return { toggleLikeComment, checkIfCommentLiked }
+      const checkIfUserComment = computed(() => root.$store.getters['userId'] === props.comment.userId)
+
+      return { toggleLikeComment, checkIfCommentLiked, checkIfUserComment }
     },
   }
 </script>

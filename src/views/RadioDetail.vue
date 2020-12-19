@@ -45,9 +45,8 @@
               </div>
             </div>
             <div class="text-center mt-10">
-              <v-btn dark color="red" large @click="toggleYoutube"
-                >YOUTUBE再生</v-btn
-              >
+              <v-btn v-if="youtubeWindow" dark color="red" @click="toggleYoutube">ウィンドウを閉じる</v-btn>
+              <v-btn v-if="!youtubeWindow" dark color="red" @click="toggleYoutube">YOUTUBE再生</v-btn>
             </div>
 
             <div v-if="youtubeWindow" class="px-3">
@@ -144,7 +143,7 @@ export default {
     const dialog          = ref(false);
     const selectedThemeId = ref(null);
     const snackbar        = ref(false);
-    const youtubeWindow   = ref(false);
+    const youtubeWindow   = ref(true);
 
     // apollo state
     const { result: radioResult, loading } = useQuery(GET_RADIO, {

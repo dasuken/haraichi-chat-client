@@ -8,7 +8,7 @@
         v-for="comment in comments"
         :key="comment._id"
       >
-        <CommentCard :comment="comment" />
+        <CommentCard :comment="comment" :selectedThemeId="selectedThemeId" />
       </div>
 
       <div v-if="loading" class="d-flex align-center justify-center" style="position: absolute; z-index: 100; width: 100%; margin-top: 30px;">
@@ -33,34 +33,34 @@
 <script>
 import { GET_THEME_COMMENTS, GET_THEME } from '@/queries.js'
 import { useQuery, useResult } from '@vue/apollo-composable'
-import { watch, ref }               from '@vue/composition-api'
+import { watch, ref }          from '@vue/composition-api'
+import { mapGetters }          from "vuex";
+
+// components
 import CommentCard             from "@/components/CommentCard"
 
-import { mapGetters } from "vuex";
-
 export default {
-  props: ['themeId'],
+  props: ['selectedThemeId'],
   components: {
     CommentCard
   },
   computed: {
-    ...mapGetters(["likedCommentIds"]),
+    ...mapGetters(["likedCommentIds", "skip", "limit"]),
   },
   setup (props) {
     const skip  = ref(0)
     const limit = ref(10)
 
-    const { result: themeResult, refetch: themeRefetch } = useQuery(GET_THEME, { themeId: props.themeId })
+    const { result: themeResult, refetch: themeRefetch } = useQuery(GET_THEME, { themeId: props.selectedThemeId })
     const themeTitle              = useResult(themeResult, null, data => data.theme.title)
 
-    const { result: commentsResult, loading, refetch: commentsRefetch, fetchMore } = useQuery(GET_THEME_COMMENTS, { themeId: props.themeId, skip: skip.value, limit: limit.value })
+    const { result: commentsResult, loading, refetch: commentsRefetch, fetchMore } = useQuery(GET_THEME_COMMENTS, { themeId: props.selectedThemeId, skip: skip.value, limit: limit.value })
     console.log("commentsResult", commentsResult)
     const comments = useResult(commentsResult, null, data => data.themeComments.comments)
     const hasMore  = useResult(commentsResult, null, data => data.themeComments.hasMore)
 
     async function loadMore() {
       try {
-        
         loading.value = true
         await fetchMore({
           variables: {
@@ -93,9 +93,9 @@ export default {
       }
     }
 
-    watch(() => props.themeId, async () => {
-      await themeRefetch({ themeId: props.themeId })
-      await commentsRefetch({ themeId: props.themeId })
+    watch(() => props.selectedThemeId, async () => {
+      await themeRefetch({ themeId: props.selectedThemeId })
+      await commentsRefetch({ themeId: props.selectedThemeId })
     })
 
     return  {

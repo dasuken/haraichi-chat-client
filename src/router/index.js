@@ -15,6 +15,7 @@ const routes = [
   {
     path: '/radio/:id',
     component: RadioDetail,
+    name: "RadioDetail",
     props: true
   }
 ]
@@ -24,6 +25,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
 
 router.beforeEach((to, from, next) => {
   if (!Store.getters['userId']) Store.commit('publishUserId')

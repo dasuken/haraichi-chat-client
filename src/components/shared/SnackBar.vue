@@ -6,13 +6,13 @@
       top
       right
     >
-      {{ text }}
+      {{ snackbarText }}
 
       <template v-slot:action="{ attrs }">
         <v-btn
           text
           v-bind="attrs"
-          @click="$emit('close-snack-bar')"
+          @click="closeSnackbar"
         >
           <v-icon>clear</v-icon>
         </v-btn>
@@ -22,7 +22,27 @@
 </template>
 
 <script>
+import { ref, watch } from '@vue/composition-api'
+
   export default {
-    props: ["snackbar", "text"],
+    setup(_, { root }) {
+      const snackbar     = ref(root.$store.getters['snackbar'])
+      const snackbarText = ref(root.$store.getters['snackbarText'])
+
+      watch(() => root.$store.getters['snackbar'], () => {
+        snackbar.value     = root.$store.getters['snackbar']
+        snackbarText.value = root.$store.getters['snackbarText']
+      })
+
+      function closeSnackbar() {
+        root.$store.commit('closeSnackbar')
+      }
+
+      return {
+        snackbar,
+        snackbarText,
+        closeSnackbar,
+      }
+    }
   }
 </script>

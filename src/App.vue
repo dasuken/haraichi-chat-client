@@ -1,5 +1,6 @@
 <template>
   <v-app style="background-color: #F8F7F7!important;">
+    <SnackBar />
     <Nav></Nav>
     <transition name="fade">
       <router-view></router-view>
@@ -11,10 +12,17 @@
 <script>
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
+import SnackBar from '@/components/shared/SnackBar'
 
 export default {
   name: 'App',
-  components: { Nav, Footer },
+  components: { Nav, Footer, SnackBar },
+  setup: (_, {root}) => {
+    function openSnackBar() {
+      root.$store.commit('openSnackbar', "Snackbar起動！")
+    }
+    return { openSnackBar }
+  }
 };
 </script>
 

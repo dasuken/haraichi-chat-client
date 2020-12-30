@@ -1,34 +1,14 @@
 <template>
   <div>
-    <SnackBar
-      :snackbar="snackbar"
-      text="投稿しました！"
-      @close-snack-bar="snackbar = false"
-    />
-    <v-dialog v-model="dialog" width="500">
-      <template v-slot:activator="{ on }">
-        <v-btn
-          dark
-          large
-          color="orange darken-2 pa-2"
-          v-on="on"
-          style="position: fixed; right: 100px; bottom: 100px; z-index: 1"
-          fab
-        >
-          <v-icon dark>edit</v-icon>
-        </v-btn>
-      </template>
-
-      <CommentForm
-        :themes="themes"
-        @closeModal="closeModal"
-        @showSnackbar="showSnackbar"
-      />
-    </v-dialog>
+    <comment-create-btn :themes="themes" />
 
     <v-container>
       <v-row justify="center">
         <v-col cols="12" md="10" lg="8" style="position: relative">
+          <v-btn icon small class="mb-3 ml-2" @click="historyBack">
+            <v-icon>arrow_back</v-icon>
+          </v-btn>
+
           <!-- Radio Header -->
           <div class="radioHeader">
             <div
@@ -44,9 +24,14 @@
                 放送日: {{ radioDate }}
               </div>
             </div>
-            <div class="text-center mt-10">
-              <v-btn v-if="youtubeWindow" dark color="red" @click="toggleYoutube">ウィンドウを閉じる</v-btn>
-              <v-btn v-if="!youtubeWindow" dark color="red" @click="toggleYoutube">YOUTUBE再生</v-btn>
+            <v-divider></v-divider>
+            <div class="text-center mt-10 mb-2">
+              <v-btn v-if="youtubeWindow" fab dark color="red" @click="toggleYoutube">
+                <v-icon>cancel</v-icon>
+              </v-btn>
+              <v-btn v-if="!youtubeWindow" fab dark color="red" @click="toggleYoutube">
+                <v-icon>video_library</v-icon>
+              </v-btn>
             </div>
 
             <div v-if="youtubeWindow" class="px-3">
@@ -94,25 +79,9 @@
               </v-col>
             </div>
           </div>
-          <!-- theme selector -->
-          <!-- <div class="d-flex">
-
-              <div style="width: 200px;" class="mt-7 ml-6">
-                <v-select
-                  prepend-inner-icon="swap_vert"
-                  :items="themes"
-                  item-text="title"
-                  item-value="_id"
-                  v-model="selectedThemeId"
-                  label="コーナー選択"
-                  filled
-                ></v-select>
-
-              </div>
-          </div> -->
 
           <h1 class="mt-12 px-3">リスナーの投稿</h1>
-          <comments :themeId="selectedThemeId" />
+          <comments :selectedThemeId="selectedThemeId" />
         </v-col>
       </v-row>
     </v-container>
@@ -121,29 +90,30 @@
 
 <script>
 import { GET_RADIO, GET_RADIO_THEMES } from "@/queries.js";
-
 import { useQuery, useResult } from "@vue/apollo-composable";
-import { ref } from "@vue/composition-api";
+import { ref, watch } from "@vue/composition-api";
 
-import Youtube from "@/components/shared/Youtube";
-import SnackBar from "@/components/shared/SnackBar";
-import CommentForm from "@/components/CommentForm";
-import Comments from "@/components/Comments.vue";
+// components
+import Youtube     from "@/components/shared/Youtube";
+import Comments    from "@/components/Comments.vue";
+import CommentCreateBtn from "@/components/CommentCreateBtn"
 
 export default {
   props: ["id"],
   components: {
     Youtube,
-    CommentForm,
-    SnackBar,
     Comments,
+    CommentCreateBtn,
   },
-  setup(props) {
+  setup(props, ctx) {
     // ordinary data
-    const dialog          = ref(false);
-    const selectedThemeId = ref(null);
-    const snackbar        = ref(false);
+    const selectedThemeId = ref(ctx.root.$store.getters['selectedThemeId']);
     const youtubeWindow   = ref(true);
+
+    watch(() => ctx.root.$store.getters['selectedThemeId'], () => {
+      console.log("store changed");
+      selectedThemeId.value = ctx.root.$store.getters['selectedThemeId']
+    })
 
     // apollo state
     const { result: radioResult, loading } = useQuery(GET_RADIO, {
@@ -161,7 +131,11 @@ export default {
       radioId: props.id,
     });
     onResult((data) => {
-      selectedThemeId.value = data.data.radioThemes[0]._id;
+      if (props.id === ctx.root.$store.getters['lastVisitedRadio']) return
+      const firstThemeId = data.data.radioThemes[0]._id
+      ctx.root.$store.commit('setTheme', firstThemeId)
+      ctx.root.$store.commit('setLastVisitedRadio', props.id)
+      console.log("setTheme動いたよ", ctx.root.$store.getters['selectedThemeId']);
     });
     const themes = useResult(
       radioThemeResult,
@@ -171,16 +145,7 @@ export default {
 
     // ordinary functions
     function changeTheme(themeId) {
-      selectedThemeId.value = themeId;
-    }
-    function closeModal() {
-      dialog.value = false;
-    }
-    function showSnackbar() {
-      snackbar.value = true;
-      setTimeout(() => {
-        snackbar.value = false;
-      }, 3000);
+      ctx.root.$store.commit('setTheme', themeId)
     }
     function toggleYoutube() {
       youtubeWindow.value = !youtubeWindow.value;
@@ -188,11 +153,12 @@ export default {
     function isSelected(themeId) {
       return selectedThemeId.value === themeId;
     }
+    function historyBack() {
+      ctx.root.$router.go(-1)
+    }
 
     return {
-      dialog,
       selectedThemeId,
-      snackbar,
       youtubeUrl,
       youtubeWindow,
 
@@ -202,10 +168,9 @@ export default {
       themes,
       changeTheme,
 
-      showSnackbar,
-      closeModal,
       toggleYoutube,
       isSelected,
+      historyBack,
     };
   },
 };

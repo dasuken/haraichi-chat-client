@@ -74,20 +74,6 @@ export const GET_THEME_COMMENTS = gql`
   }
 `
 
-// mutation
-
-export const CREATE_COMMENT = gql `
-  mutation($radioName: String!, $message: String!, $themeId: ID!, $userId: ID) {
-    createComment(data: { radioName: $radioName, message: $message, themeId: $themeId, userId: $userId}) {
-      _id
-      message
-      radioName
-      likes
-      createdAt
-    }
-  }
-`
-
 export const GET_COMMENTS = gql`
   query getComments($skip: Int, $limit: Int) {
     comments(skip: $skip, limit: $limit) {
@@ -98,6 +84,48 @@ export const GET_COMMENTS = gql`
         _id
         title
       }
+    }
+  }
+`
+
+// mutation
+
+// comment
+
+export const CREATE_COMMENT = gql `
+  mutation($radioName: String!, $message: String!, $themeId: ID!, $userId: ID) {
+    createComment(data: { radioName: $radioName, message: $message, themeId: $themeId, userId: $userId}) {
+      _id
+      message
+      radioName
+      likes
+      createdAt
+      userId
+    }
+  }
+`
+
+export const DELETE_COMMENT = gql`
+  mutation deleteComment($commentId: ID!) {
+    deleteComment(commentId: $commentId){
+      _id
+      message
+      radioName
+      themeId {
+        _id
+      }
+    }
+  }
+`
+
+export const UPDATE_COMMENT = gql`
+  mutation($commentId: ID!, $message: String, $radioName: String) {
+    updateComment(commentId: $commentId, data: { message: $message, radioName: $radioName }) {
+      _id
+      message
+      radioName
+      likes
+      createdAt
     }
   }
 `

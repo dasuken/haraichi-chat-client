@@ -68,10 +68,12 @@
                       {{ theme.title }}
                     </div>
 
-                    <div class="text-caption font-weight-semibold pa-3">
-                      <p class="text-subtitle-2 font-weight-bold">
+                    <div class="text-caption font-weight-bold pa-3">
+                      <p class="text-subtitle-2 font-weight-black">
                         コーナー説明
+                        <v-divider></v-divider>
                       </p>
+
                       {{ theme.description }}
                     </div>
                   </v-card>

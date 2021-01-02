@@ -34,13 +34,13 @@ a {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition-duration: 0.25s;
+  transition-duration: 0.20s;
   transform: translateX(100px);
   opacity: 0;
 }
 
 .fade-enter-active {
-  transition-delay: 0.25s;
+  transition-delay: 0.20s;
 }
 
 

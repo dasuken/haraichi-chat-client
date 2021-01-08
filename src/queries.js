@@ -88,6 +88,24 @@ export const GET_COMMENTS = gql`
   }
 `
 
+// responses
+export const GET_COMMENT_RESPONSES = gql`
+  query getCommentResponses($commentId: ID!) {
+    commentResponses(commentId: $commentId) {
+      _id
+      message
+      radioName
+      createdAt
+    }
+  }
+`
+
+export const GET_COMMENT_RESPONSE_COUNTS = gql `
+  query getCommentResponseCounts($commentId: ID!){
+    commentResponseCounts(commentId: $commentId)
+  }
+`
+
 // mutation
 
 // comment
@@ -144,6 +162,19 @@ export const UNLIKE_COMMENT = gql`
     unlikeComment(commentId: $commentId) {
       _id
       likes
+    }
+  }
+`
+
+// response
+
+export const CREATE_RESPONSE = gql`
+  mutation mutateCreatResponse($commentId: ID!, $message: String!, $radioName: String!) {
+    createResponse(commentId: $commentId, data: { message:$message, radioName:$radioName }) {
+      _id
+      message
+      radioName
+      createdAt
     }
   }
 `

@@ -23,11 +23,41 @@
       >
         {{ comment.message }}
       </div>
-      <div class="d-flex align-center justify-space-between">
+      <div class="d-flex align-center justify-space-between mt-4">
         <div>
-          <div class="d-flex align-center" v-if="checkIfCommentUser">
-            <comment-edit-btn :comment="comment" />
-            <comment-delete-btn :comment="comment" :selectedThemeId="selectedThemeId" />
+          <div class="d-flex align-center">
+            <!-- コメントボタン -->
+            <response-create-btn :commentId="comment._id" />
+
+            <!-- toggle response area -->
+            <template v-if="responseCounts">
+              <v-btn
+                small
+                tile
+                color="white blue--text"
+                class="mr-2 ml-n4"
+                elevation="0"
+                @click="expandComment = !expandComment"
+              >
+                <template v-if="!expandComment">
+                  <v-icon>keyboard_arrow_down</v-icon>
+                  返信: {{ responseCounts }}件
+                </template>
+                <template v-else>
+                  <v-icon>keyboard_arrow_up</v-icon>
+                  返信を閉じる
+                </template>
+              </v-btn>
+            </template>
+
+            <!-- edit delete buttons -->
+            <span v-if="checkIfCommentUser">
+                <comment-edit-btn :comment="comment" />
+                <comment-delete-btn
+                  :comment="comment"
+                  :selectedThemeId="selectedThemeId"
+                />
+            </span>
           </div>
         </div>
 
@@ -45,19 +75,27 @@
           <span>{{ comment.likes }}</span>
         </div>
       </div>
+
+      <response-list v-if="expandComment" :commentId="comment._id" />
     </v-card>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import { LIKE_COMMENT, UNLIKE_COMMENT } from "@/queries.js";
-import { useMutation } from "@vue/apollo-composable";
-import { computed } from "@vue/composition-api";
+import {
+  LIKE_COMMENT,
+  UNLIKE_COMMENT,
+  GET_COMMENT_RESPONSE_COUNTS,
+} from "@/queries.js";
+import { useMutation, useQuery, useResult } from "@vue/apollo-composable";
+import { computed, ref } from "@vue/composition-api";
 
 // components
-import CommentEditBtn from "@/components/CommentEditBtn.vue"
-import CommentDeleteBtn from './CommentDeleteBtn.vue';
+import CommentEditBtn from "@/components/CommentEditBtn.vue";
+import CommentDeleteBtn from "./CommentDeleteBtn.vue";
+import ResponseList from "./ResponseList.vue";
+import ResponseCreateBtn from "./ResponseCreateBtn.vue";
 
 export default {
   props: {
@@ -67,11 +105,24 @@ export default {
   components: {
     CommentEditBtn,
     CommentDeleteBtn,
+    ResponseList,
+    ResponseCreateBtn,
   },
   computed: {
     ...mapGetters(["likedCommentIds"]),
   },
   setup(props, { root }) {
+    const expandComment = ref(false);
+
+    // apollo state
+    const { result } = useQuery(GET_COMMENT_RESPONSE_COUNTS, {
+      commentId: props.comment._id,
+    });
+    const responseCounts = useResult(
+      result,
+      null,
+      (data) => data.commentResponseCounts
+    );
 
     // apollo mutation
     const { mutate: unlikeComment } = useMutation(UNLIKE_COMMENT, {
@@ -80,7 +131,6 @@ export default {
     const { mutate: likeComment } = useMutation(LIKE_COMMENT, {
       variables: { commentId: props.comment._id },
     });
-
 
     // ordinary
     function toggleLikeComment(commentId) {
@@ -103,7 +153,13 @@ export default {
       () => root.$store.getters["userId"] === props.comment.userId
     );
 
-    return { toggleLikeComment, checkIfCommentLiked, checkIfCommentUser };
+    return {
+      expandComment,
+      responseCounts,
+      toggleLikeComment,
+      checkIfCommentLiked,
+      checkIfCommentUser,
+    };
   },
 };
 </script>

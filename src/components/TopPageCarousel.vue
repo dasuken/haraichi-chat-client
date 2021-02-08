@@ -7,8 +7,8 @@
           <v-col cols="10">
 
             <v-row align="center" justify="center" style="height: 100%;">
-              <v-col cols="12" sm="6" class=" mb-6">
-                <div class="mplus text-h4 mb-7 orange--text">コーナーメールを投稿しよう！</div>
+              <v-col cols="12" sm="6" class="mb-6">
+                <div class="mplus text-h4 mb-7 orange--text">コーナーメールを供養しよう！</div>
 
                 <div class="text-subtitle-2 font-weight-black mb-7">
                   <div>
@@ -17,7 +17,7 @@
                   </div>
                   <div>
                     <v-icon color="success" small class="mr-1">done</v-icon>
-                    送るのは億劫だけど試したい
+                    送るのは面倒だけど試したい
                   </div>
                 </div>
                 <v-btn color="orange" class="white--text mplus" :to="`/radio/${latestRadioId}`" >
@@ -25,7 +25,7 @@
                   今週のラジオへ
                 </v-btn>
               </v-col>
-              <v-col cols="12" sm="6">
+              <v-col cols="12" sm="6" class="d-none d-sm-flex">
                 <v-img src="https://www.tokyoheadline.com/wp-content/uploads/haraichi.jpg" aspect-ratio="1.3" class="rounded-xl"></v-img>
               </v-col>
             </v-row>

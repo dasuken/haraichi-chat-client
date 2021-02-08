@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-card>
+    <v-card dark color="orange">
       <v-card-title class="font-weight-black text-h5 justify-center">
-        葉書を書こう
+        コーナーメールを書く
       </v-card-title>
 
       <div v-if="error" class="ma-3">
@@ -45,8 +45,7 @@
           <div class="text-center">
             <v-btn
               type="submit"
-              color="orange darken-3"
-              dark
+
               :disabled="!isFormValid"
               :loading="loading"
               >送信</v-btn

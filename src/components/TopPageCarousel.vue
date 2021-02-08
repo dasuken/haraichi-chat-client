@@ -4,7 +4,7 @@
       <v-container>
 
         <v-row justify="center">
-          <v-col cols="10">
+          <v-col cols="12" lg="10">
 
             <v-row align="center" justify="center" style="height: 100%;">
               <v-col cols="12" sm="6" class="mb-6">

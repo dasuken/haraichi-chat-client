@@ -2,7 +2,9 @@
   <div>
     <v-card class="mt-5 rounded-lg py-2">
 
-      <h2 class="font-weight-black text-center mb-2 mplus">テーマ：  {{themeTitle}}</h2>
+      <div class="text-center mb-2 py-3 font-weight-black mplus">
+        {{themeTitle}}
+      </div>
 
       <div
         v-for="comment in comments"

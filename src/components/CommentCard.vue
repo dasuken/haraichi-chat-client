@@ -3,11 +3,11 @@
     <v-card flat style="border-top: 1px solid #e2e8f0" tile class="px-6 py-4">
       <div class="d-flex justify-space-between">
         <div>
-          <span class="grey--text text-caption">RN: </span>
+          <span class="grey--text text-caption mr-2">RN:</span>
           <v-chip
             dark
             small
-            class="text-subtitle-2 font-weight-semibold"
+            class="text-caption font-weight-semibold"
             :class="{ orange: checkIfCommentUser }"
           >
             {{ comment.radioName }}
@@ -18,7 +18,7 @@
         </div>
       </div>
       <div
-        class="font-weight-black andika text-subtitle-1 mt-4 mb-2"
+        class="font-weight-bold andika text-subtitle-2 mt-4 mb-2"
         style="white-space: pre-wrap"
       >
         {{ comment.message }}

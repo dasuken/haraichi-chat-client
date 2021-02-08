@@ -3,10 +3,10 @@
     <h1 class="text-center">
       <v-chip label dark color="orange" class="mb-2">最新の投稿</v-chip>
     </h1>
-    <v-card style="border: 2px solid grey;" class="pa-2 rounded-md">
+    <v-card  class="pa-2 rounded-md">
       <div v-for="comment in recentComments" :key="comment._id" class="mb-2">
-        <div class="font-weight-bold">・{{ comment.themeId.title }}</div>
-        <div class="grey--text ml-3 font-weight-semibold text-subtitle-2">{{ comment.message }}</div>
+        <div class="font-weight-bold text-subtitle-2">・{{ comment.themeId.title }}</div>
+        <div class="grey--text ml-3 font-weight-semibold text-caption">{{ comment.message }}</div>
         <div class="text-right font-weight-semibold text-caption mr-4">{{ comment.radioName }}</div>
       </div>
     </v-card>

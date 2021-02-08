@@ -44,7 +44,7 @@
           <div class="themeCards mt-5">
             <h2 class="mb-2 font-weight-black px-3">今週のコーナー</h2>
             <div style="overflow-y: scroll" class="d-flex">
-              <v-col cols="7" md="5" v-for="theme in themes" :key="theme._id">
+              <v-col cols="7" sm="5" v-for="theme in themes" :key="theme._id">
                 <v-hover v-slot:default="{ hover }">
                   <v-card
                     elevation="6"
@@ -82,7 +82,7 @@
             </div>
           </div>
 
-          <h1 class="mt-12 px-3">リスナーの投稿</h1>
+          <h3 class="mt-12 px-3 font-weight-black">リスナーの投稿</h3>
           <comments :selectedThemeId="selectedThemeId" />
         </v-col>
       </v-row>

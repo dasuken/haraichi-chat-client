@@ -3,7 +3,7 @@
     <TopPageCarousel :latestRadioId="latestRadioId" />
     <v-container>
       <v-row justify="center">
-        <v-col cols="10">
+        <v-col cols="12" lg="10">
           <v-row justify="space-between">
             <v-col cols="12" md="9" class="mb-10" radio style="position: relative;">
               <div v-if="loading" class="d-flex align-center justify-center" style="position: absolute; z-index: 100; width: 100%; margin-top: 30px;">
@@ -17,14 +17,14 @@
 
               <!-- 普通のラジオ一覧 -->
               <v-row>
-                <v-col cols="12" sm="6" md="12" lg="6" v-for="radio in radios" :key=radio._id>
+                <v-col cols="12" sm="6" lg="6" v-for="radio in radios" :key=radio._id>
                   <RadioCard :radio="radio" :latestRadioId="radios[0]._id" />
                 </v-col>
               </v-row>
             </v-col>
 
             <!-- 新規コメントエリア -->
-            <v-col cols="3" class="hidden-sm-and-down">
+            <v-col cols="3"  class="hidden-sm-and-down">
               <recent-comments />
             </v-col>
 

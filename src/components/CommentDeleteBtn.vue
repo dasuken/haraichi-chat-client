@@ -61,13 +61,10 @@ export default defineComponent({
             limit: 10
           },
         });
-        console.log("dataaa", data);
 
         if (!data) return;
         const index = data.themeComments.comments.findIndex(comment => comment._id === props.comment._id)
-        console.log("index!", index);
         data.themeComments.comments.splice(index, 1)
-        console.log("deleted comments", data.themeComments);
         cache.writeQuery({
           query: GET_THEME_COMMENTS,
           variables: {

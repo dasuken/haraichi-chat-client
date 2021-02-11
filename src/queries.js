@@ -95,6 +95,7 @@ export const GET_COMMENT_RESPONSES = gql`
       _id
       message
       radioName
+      commentId
       createdAt
     }
   }
@@ -169,12 +170,20 @@ export const UNLIKE_COMMENT = gql`
 // response
 
 export const CREATE_RESPONSE = gql`
-  mutation mutateCreatResponse($commentId: ID!, $message: String!, $radioName: String!) {
-    createResponse(commentId: $commentId, data: { message:$message, radioName:$radioName }) {
+  mutation mutateCreatResponse($commentId: ID!, $message: String!, $radioName: String!, $userId: ID) {
+    createResponse(commentId: $commentId, data: { message:$message, radioName:$radioName, userId: $userId }) {
       _id
       message
       radioName
       createdAt
     }
   }
+`
+
+export const DELETE_RESPONSE = gql`
+  mutation mutateDeleteResponse($responseId: ID!) {
+  deleteResponse(responseId: $responseId) {
+    _id
+  }
+}
 `

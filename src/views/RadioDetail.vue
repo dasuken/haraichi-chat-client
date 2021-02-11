@@ -118,6 +118,7 @@ export default {
     })
 
     // apollo state
+    // radio
     const { result: radioResult, loading } = useQuery(GET_RADIO, {
       radioId: props.id,
     });
@@ -129,6 +130,7 @@ export default {
     );
     const youtubeUrl = useResult(radioResult, null, (data) => data.radio.youtubeUrl);
 
+    // themes
     const { result: radioThemeResult, onResult } = useQuery(GET_RADIO_THEMES, {
       radioId: props.id,
     });
@@ -137,13 +139,8 @@ export default {
       const firstThemeId = data.data.radioThemes[0]._id
       ctx.root.$store.commit('setTheme', firstThemeId)
       ctx.root.$store.commit('setLastVisitedRadio', props.id)
-      console.log("setTheme動いたよ", ctx.root.$store.getters['selectedThemeId']);
     });
-    const themes = useResult(
-      radioThemeResult,
-      null,
-      (data) => data.radioThemes
-    );
+    const themes = useResult(radioThemeResult, null, data => data.radioThemes);
 
     // ordinary functions
     function changeTheme(themeId) {

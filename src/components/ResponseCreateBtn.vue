@@ -40,7 +40,7 @@ import { ref, onMounted } from '@vue/composition-api'
     props: {
       commentId: String,
     },
-    setup({ commentId }) {
+    setup({ commentId }, { root }) {
       const dialog      = ref(false)
       const message     = ref('')
       const radioName   = ref('')
@@ -62,7 +62,8 @@ import { ref, onMounted } from '@vue/composition-api'
         variables: {
           radioName: radioName.value,
           message: message.value,
-          commentId
+          commentId,
+          userId: root.$store.getters['userId']
         },
         update: (cache, { data: { createResponse } }) => {
           const data = cache.readQuery({
@@ -71,7 +72,6 @@ import { ref, onMounted } from '@vue/composition-api'
               commentId
             },
           });
-          
 
           if (!data) return;
           data.commentResponses.unshift(createResponse);

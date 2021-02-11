@@ -127,10 +127,10 @@ export default {
         }
       }
     }
+
     function showSnackbar() {
       root.$store.commit('openSnackbar', "編集しました！")
     }
-
 
     onMounted(() => form.value);
 

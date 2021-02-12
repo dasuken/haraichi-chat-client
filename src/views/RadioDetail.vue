@@ -4,7 +4,7 @@
 
     <v-container>
       <v-row justify="center">
-        <v-col cols="12" md="10" lg="8" style="position: relative">
+        <v-col cols="12" lg="10" style="position: relative">
           <v-btn icon small class="mb-3 ml-2" @click="historyBack">
             <v-icon>arrow_back</v-icon>
           </v-btn>
@@ -44,7 +44,7 @@
           <div class="themeCards mt-5">
             <h2 class="mb-2 font-weight-black px-3">今週のコーナー</h2>
             <div style="overflow-y: scroll" class="d-flex">
-              <v-col cols="7" sm="5" v-for="theme in themes" :key="theme._id">
+              <v-col cols="7" sm="6" v-for="theme in themes" :key="theme._id">
                 <v-hover v-slot:default="{ hover }">
                   <v-card
                     elevation="6"
@@ -57,7 +57,7 @@
                         <v-btn dark color="black">はがき一覧表示</v-btn>
                       </v-overlay>
                     </v-fade-transition>
-                    <v-img :src="theme.thumbnail" aspect-ratio="1.3">
+                    <v-img :src="theme.thumbnail" aspect-ratio="1.5">
                       <div class="mt-2 ml-2" v-if="isSelected(theme._id)">
                         <v-chip dark color="orange" class="font-weight-black"
                           >選択中</v-chip

@@ -1,5 +1,5 @@
 <template>
-  <div class="white pb-10">
+  <div class="white pb-3" >
       <!-- <v-img aspect-ratio="2" max-height="400px" src="https://cdn-ak.f.st-hatena.com/images/fotolife/k/kuro_matsu2023/20171101/20171101164433.jpg"> -->
       <v-container>
 

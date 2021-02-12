@@ -1,9 +1,9 @@
 <template>
-  <v-app style="background-color: #F8F7F7!important;">
+  <v-app >
     <SnackBar />
     <Nav></Nav>
     <transition name="fade">
-      <router-view></router-view>
+      <router-view style="background-color: #F8F7F7!important;"></router-view>
     </transition>
     <Footer></Footer>
   </v-app>

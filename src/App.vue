@@ -1,5 +1,5 @@
 <template>
-  <v-app >
+  <v-app style="margin-left: 20px!important;margin-right: 20px!important;">
     <SnackBar />
     <Nav></Nav>
     <transition name="fade" style="style=background-color: #fafafa;">

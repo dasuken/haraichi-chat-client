@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="text-center">
-      <v-chip label dark color="orange" class="mb-2">最新の投稿</v-chip>
+      <v-chip label dark color="orange" outlined class="mb-2">最新の投稿</v-chip>
     </h1>
     <v-card  class="pa-2 rounded-md">
       <div v-for="comment in recentComments" :key="comment._id" class="mb-2">

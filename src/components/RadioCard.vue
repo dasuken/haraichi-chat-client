@@ -14,7 +14,7 @@
             <v-icon color="orange" dark label class="ml-1" v-if="checkIfLatest(radio._id)">fiber_new</v-icon>
           </div>
           <div class="themes">
-            <v-chip small v-for="theme in radio.themes" :key="theme._id" class="font-weight-semibold mb-1 dark orange white--text lighten-1 mr-1" label>
+            <v-chip small v-for="theme in radio.themes" :key="theme._id" class="font-weight-semibold mb-1 dark grey darken-3 white--text lighten-1 mr-1" label>
               {{ theme.title }}
             </v-chip>
           </div>

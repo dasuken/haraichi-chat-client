@@ -4,10 +4,10 @@
 
     <v-container>
       <v-row justify="center">
-        <v-col cols="12" md="8" style="position: relative">
+        <v-col cols="12" sm="8" style="position: relative">
 
           <!-- Radio Header -->
-          <div class="radioHeader ml-2">
+          <div class="radioHeader ml-2 mb-5">
             <div class="text-caption grey--text">
               放送日: {{ radioDate }}
             </div>
@@ -15,16 +15,8 @@
               <div class="mplus">{{ radioTimes }}回目のターン</div>
             </div>
           </div>
-          <!-- <div class="mt-10 mb-2">
-            <v-btn v-if="youtubeWindow" small fab dark color="red" @click="toggleYoutube">
-              <v-icon>cancel</v-icon>
-            </v-btn>
-            <v-btn v-if="!youtubeWindow" small fab dark color="red" @click="toggleYoutube">
-              <v-icon>video_library</v-icon>
-            </v-btn>
-          </div> -->
 
-          <div v-if="youtubeWindow" class="px-2">
+          <div class="px-2">
             <v-row>
               <v-col cols="12">
                 <Youtube :youtubeUrl="youtubeUrl"></Youtube>
@@ -104,7 +96,6 @@ export default {
   setup(props, ctx) {
     // ordinary data
     const selectedThemeId = ref(ctx.root.$store.getters['selectedThemeId']);
-    const youtubeWindow   = ref(true);
 
     watch(() => ctx.root.$store.getters['selectedThemeId'], () => {
       console.log("store changed");
@@ -140,9 +131,6 @@ export default {
     function changeTheme(themeId) {
       ctx.root.$store.commit('setTheme', themeId)
     }
-    function toggleYoutube() {
-      youtubeWindow.value = !youtubeWindow.value;
-    }
     function isSelected(themeId) {
       return selectedThemeId.value === themeId;
     }
@@ -150,7 +138,6 @@ export default {
     return {
       selectedThemeId,
       youtubeUrl,
-      youtubeWindow,
 
       loading,
       radioTimes,
@@ -158,7 +145,6 @@ export default {
       themes,
       changeTheme,
 
-      toggleYoutube,
       isSelected,
     };
   },

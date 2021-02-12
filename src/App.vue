@@ -2,8 +2,8 @@
   <v-app >
     <SnackBar />
     <Nav></Nav>
-    <transition name="fade">
-      <router-view style="background-color: #F8F7F7!important;"></router-view>
+    <transition name="fade" style="style=background-color: #fafafa;">
+      <router-view></router-view>
     </transition>
     <Footer></Footer>
   </v-app>

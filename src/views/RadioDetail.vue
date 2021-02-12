@@ -1,50 +1,44 @@
 <template>
-  <div>
+  <div style="background-color: #fafafa;" class="pt-12">
     <comment-create-btn :themes="themes" />
 
     <v-container>
       <v-row justify="center">
-        <v-col cols="12" lg="10" style="position: relative">
-          <v-btn icon small class="mb-3 ml-2" @click="historyBack">
-            <v-icon>arrow_back</v-icon>
-          </v-btn>
+        <v-col cols="12" md="8" style="position: relative">
 
           <!-- Radio Header -->
-          <div class="radioHeader">
-            <div
-              class="font-weight-black text-h6 d-flex justify-space-between align-baseline px-3"
-            >
-              <div>
-                <span class="mplus orange--text" style="font-size: 50px">{{
-                  radioTimes
-                }}</span>
-                回目のターン
-              </div>
-              <div class="text-subtitle-2 grey--text">
-                放送日: {{ radioDate }}
-              </div>
+          <div class="radioHeader ml-2">
+            <div class="text-caption grey--text">
+              放送日: {{ radioDate }}
             </div>
-            <v-divider></v-divider>
-            <div class="text-center mt-10 mb-2">
-              <v-btn v-if="youtubeWindow" fab dark color="red" @click="toggleYoutube">
-                <v-icon>cancel</v-icon>
-              </v-btn>
-              <v-btn v-if="!youtubeWindow" fab dark color="red" @click="toggleYoutube">
-                <v-icon>video_library</v-icon>
-              </v-btn>
-            </div>
-
-            <div v-if="youtubeWindow" class="px-3">
-              <Youtube :youtubeUrl="youtubeUrl"></Youtube>
+            <div class="font-weight-black text-h4">
+              <div class="mplus">{{ radioTimes }}回目のターン</div>
             </div>
           </div>
+          <!-- <div class="mt-10 mb-2">
+            <v-btn v-if="youtubeWindow" small fab dark color="red" @click="toggleYoutube">
+              <v-icon>cancel</v-icon>
+            </v-btn>
+            <v-btn v-if="!youtubeWindow" small fab dark color="red" @click="toggleYoutube">
+              <v-icon>video_library</v-icon>
+            </v-btn>
+          </div> -->
+
+          <div v-if="youtubeWindow" class="px-2">
+            <v-row>
+              <v-col cols="12">
+                <Youtube :youtubeUrl="youtubeUrl"></Youtube>
+              </v-col>
+            </v-row>
+          </div>
+          
 
           <!-- Theme Cards -->
 
           <div class="themeCards mt-5">
             <h2 class="mb-2 font-weight-black px-3">今週のコーナー</h2>
             <div style="overflow-y: scroll" class="d-flex">
-              <v-col cols="7" sm="6" v-for="theme in themes" :key="theme._id">
+              <v-col cols="6" v-for="theme in themes" :key="theme._id">
                 <v-hover v-slot:default="{ hover }">
                   <v-card
                     elevation="6"
@@ -152,9 +146,6 @@ export default {
     function isSelected(themeId) {
       return selectedThemeId.value === themeId;
     }
-    function historyBack() {
-      ctx.root.$router.go(-1)
-    }
 
     return {
       selectedThemeId,
@@ -169,7 +160,6 @@ export default {
 
       toggleYoutube,
       isSelected,
-      historyBack,
     };
   },
 };

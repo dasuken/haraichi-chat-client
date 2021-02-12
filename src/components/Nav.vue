@@ -1,12 +1,12 @@
 <template>
-  <div style="position:fixed; width: 100%; z-index: 100;">
+  <div style="position: absolute; width: 100%; z-index: 100;">
     <v-container style="padding-top: 0px!important; padding-bottom: 0px!important;">
       <v-row justify="center">
-        <v-col cols="12" lg="10" class="d-flex justify-space-between">
+        <v-col cols="12" lg="10" class="d-flex justify-space-between align-center">
 
         <router-link to="/">
           <h3 class="d-flex align-center">
-            <v-avatar color="white" size="40" class="mr-2">
+            <v-avatar color="white" size="35" class="mr-2">
               <!-- <v-icon color="orange darken-2" size="40">
                 contactless
               </v-icon> -->

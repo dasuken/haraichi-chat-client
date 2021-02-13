@@ -1,11 +1,5 @@
 <template>
   <div>
-    <!-- <div class="mb-3 ">
-      <div class="font-weight-black text-h6 mx-3 text-center">
-        {{radio.times}}回目のターン
-        <v-icon color="orange" dark label class="ml-1" v-if="checkIfLatest(radio._id)">fiber_new</v-icon>
-      </div>
-    </div> -->
       <v-card elevation="3" class="rounded-xl" :to="`/radio/${radio._id}`">
         <v-img :src="radio.themeImage" aspect-ratio="1.5"></v-img>
         <v-card-text>

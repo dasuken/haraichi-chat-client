@@ -11,11 +11,11 @@
 
                 <div class="text-subtitle-2 font-weight-black mb-7">
                   <div>
-                    <v-icon color="success" small class="mr-1 ">done</v-icon>
+                    <v-icon color="success" class="mr-1">done</v-icon>
                     読まれなかったけど面白いはず
                   </div>
                   <div>
-                    <v-icon color="success" small class="mr-1 ">done</v-icon>
+                    <v-icon color="success" class="mr-1 ">done</v-icon>
                     送るのは面倒だけど試したい
                   </div>
                 </div>

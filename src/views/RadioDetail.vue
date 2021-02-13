@@ -7,7 +7,7 @@
         <v-col cols="12" sm="8" style="position: relative">
 
           <!-- Radio Header -->
-          <div class="radioHeader ml-2 mb-5">
+          <div class="radioHeader mb-5">
             <div class="text-caption grey--text">
               放送日: {{ radioDate }}
             </div>
@@ -18,18 +18,17 @@
 
           <div class="px-2">
             <v-row>
-              <v-col cols="12">
+              <v-col cols="12" class="mx-n3">
                 <Youtube :youtubeUrl="youtubeUrl"></Youtube>
               </v-col>
             </v-row>
           </div>
-          
 
           <!-- Theme Cards -->
 
           <div class="themeCards mt-5">
-            <div class="mb-2 font-weight-black px-3">今週のコーナー</div>
-            <div class="d-flex flex-wrap">
+            <div class="mb-2 font-weight-black">今週のコーナー</div>
+            <div class="d-flex flex-wrap mx-n3">
               <v-col cols="12" md="6" v-for="theme in themes" :key="theme._id">
                 <v-hover v-slot:default="{ hover }">
                   <v-card
@@ -72,7 +71,7 @@
             </div>
           </div>
 
-          <h3 class="mt-12 px-3 font-weight-black">リスナーの投稿</h3>
+          <h3 class="mt-12font-weight-black mt-10">リスナーの投稿</h3>
           <comments :selectedThemeId="selectedThemeId" />
         </v-col>
       </v-row>

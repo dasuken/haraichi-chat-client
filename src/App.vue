@@ -1,9 +1,9 @@
 <template>
-  <v-app style="margin-left: 20px!important;margin-right: 20px!important;">
+  <v-app>
     <SnackBar />
-    <Nav></Nav>
+    <Nav class="margin-x"></Nav>
     <transition name="fade" style="style=background-color: #fafafa;">
-      <router-view></router-view>
+      <router-view class="margin-x"></router-view>
     </transition>
     <Footer></Footer>
   </v-app>
@@ -30,6 +30,10 @@ export default {
 a {
   text-decoration: none;
   color: inherit!important;
+}
+
+.margin-x {
+  margin-left: 20px!important;margin-right: 20px!important;
 }
 
 .fade-enter-active,

@@ -5,7 +5,7 @@
         <span class="grey--text text-caption">RN: </span>
         {{ response.radioName }}
       </div>
-      <v-btn icon>
+      <v-btn v-if="checkIfResponseUser" icon>
         <v-icon color="red" @click="handleDeleteResponse">delete</v-icon>
       </v-btn>
     </div>
@@ -21,12 +21,13 @@
 <script>
 import { DELETE_RESPONSE, GET_COMMENT_RESPONSES } from '@/queries'
 import { useMutation } from '@vue/apollo-composable'
+import { computed } from '@vue/composition-api'
 
   export default {
     props: {
       response: Object
     },
-    setup(props) {
+    setup(props, { root }) {
       const { mutate: deleteResponse } = useMutation(DELETE_RESPONSE, {
         variables: {
           responseId: props.response._id
@@ -53,11 +54,16 @@ import { useMutation } from '@vue/apollo-composable'
         }
       })
 
+      const checkIfResponseUser = computed(() => {
+        return props.response && props.response.userId === root.$store.getters["userId"]
+      })
+
       const handleDeleteResponse = async () => {
         await deleteResponse()
       }
 
       return {
+        checkIfResponseUser,
         handleDeleteResponse
       }
     }

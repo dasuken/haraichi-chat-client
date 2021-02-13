@@ -1,11 +1,11 @@
 <template>
-  <v-app>
+  <v-app class="margin-x">
     <SnackBar />
-    <Nav class="margin-x"></Nav>
+    <Nav></Nav>
     <transition name="fade" style="style=background-color: #fafafa;">
-      <router-view class="margin-x"></router-view>
+      <router-view ></router-view>
     </transition>
-    <Footer></Footer>
+    <Footer class="margin-nx"></Footer>
   </v-app>
 </template>
 
@@ -33,7 +33,10 @@ a {
 }
 
 .margin-x {
-  margin-left: 20px!important;margin-right: 20px!important;
+  margin-left: 20px;margin-right: 20px;
+}
+.margin-nx {
+  margin-left: -20px!important;margin-right: -20px!important;
 }
 
 .fade-enter-active,

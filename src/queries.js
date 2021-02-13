@@ -94,6 +94,7 @@ export const GET_COMMENT_RESPONSES = gql`
     commentResponses(commentId: $commentId) {
       _id
       message
+      userId
       radioName
       commentId
       createdAt

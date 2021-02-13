@@ -1,6 +1,6 @@
 <template>
-  <div class="mt-10">
-    <TopPageCarousel :latestRadioId="latestRadioId" />
+  <div>
+    <TopPageCarousel :latestRadioId="latestRadioId"/>
     <v-container>
       <v-row justify="center">
         <v-col cols="12">
@@ -21,7 +21,7 @@
               </h1>
               <v-row>
                 <v-col cols="12" sm="6" v-for="radio in radios" :key=radio._id>
-                  <RadioCard :radio="radio" :latestRadioId="radios[0]._id" />
+                  <RadioCard :radio="radio" :latestRadioId="radios[0]._id" class="mb-6" />
                 </v-col>
               </v-row>
             </v-col>

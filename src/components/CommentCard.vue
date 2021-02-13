@@ -7,6 +7,7 @@
           <v-chip
             dark
             small
+            label
             class="text-caption font-weight-semibold"
             :class="{ orange: checkIfCommentUser }"
           >

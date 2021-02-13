@@ -28,40 +28,44 @@
           <!-- Theme Cards -->
 
           <div class="themeCards mt-5">
-            <h2 class="mb-2 font-weight-black px-3">今週のコーナー</h2>
-            <div style="overflow-y: scroll" class="d-flex">
-              <v-col cols="6" v-for="theme in themes" :key="theme._id">
+            <div class="mb-2 font-weight-black px-3">今週のコーナー</div>
+            <div class="d-flex flex-wrap">
+              <v-col cols="12" md="6" v-for="theme in themes" :key="theme._id">
                 <v-hover v-slot:default="{ hover }">
                   <v-card
                     elevation="6"
-                    class="rounded-lg"
+                    class="rounded-lg pa-2"
                     @click="changeTheme(theme._id)"
                     :class="{ selectedBorder: isSelected(theme._id) }"
                   >
+                    <div class="mt-1 ml-1" v-if="isSelected(theme._id)">
+                      <v-chip dark color="orange" class="font-weight-black"
+                        >選択中</v-chip
+                      >
+                    </div>
                     <v-fade-transition>
                       <v-overlay v-if="hover" absolute color="grey lighten-2">
                         <v-btn dark color="black">はがき一覧表示</v-btn>
                       </v-overlay>
                     </v-fade-transition>
-                    <v-img :src="theme.thumbnail" aspect-ratio="1.5">
-                      <div class="mt-2 ml-2" v-if="isSelected(theme._id)">
-                        <v-chip dark color="orange" class="font-weight-black"
-                          >選択中</v-chip
-                        >
-                      </div>
-                    </v-img>
-                    <div class="text-h6 font-weight-bold pa-3 mplus">
-                      {{ theme.title }}
-                    </div>
+                    <v-row align="center">
+                      <v-col cols="5" md="12">
+                        <v-img :src="theme.thumbnail" aspect-ratio="1.3">
+                          
+                        </v-img>
+                      </v-col>
 
-                    <div class="text-caption font-weight-bold pa-3">
-                      <p class="text-subtitle-2 font-weight-black">
-                        コーナー説明
-                        <v-divider></v-divider>
-                      </p>
+                      <v-col cols="7" md="12">
+                        <div class="text-subtitle-1 font-weight-bold mplus">
+                          {{ theme.title }}
+                        </div>
+                        <v-divider class="mb-2"></v-divider>
+                        <div class="text-caption font-weight-bold">
+                          {{ theme.description }}
+                        </div>
+                      </v-col>
+                   </v-row>
 
-                      {{ theme.description }}
-                    </div>
                   </v-card>
                 </v-hover>
               </v-col>

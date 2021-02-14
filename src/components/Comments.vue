@@ -1,9 +1,10 @@
 <template>
   <div>
     <v-card class="mt-5 rounded-lg py-2">
+      {{ selectedThemeId }}
 
       <div class="text-center mb-2 py-3 font-weight-black mplus">
-        {{themeTitle}}
+        {{ themeTitle }}
       </div>
 
       <div
@@ -54,7 +55,7 @@ export default {
     const limit = ref(10)
 
     const { result: themeResult, refetch: themeRefetch } = useQuery(GET_THEME, { themeId: props.selectedThemeId })
-    const themeTitle              = useResult(themeResult, null, data => data.theme.title)
+    const themeTitle    = useResult(themeResult, null, data => data.theme.title)
 
     const { result: commentsResult, loading, refetch: commentsRefetch, fetchMore } = useQuery(GET_THEME_COMMENTS, { themeId: props.selectedThemeId, skip: skip.value, limit: limit.value })
     console.log("commentsResult", commentsResult)

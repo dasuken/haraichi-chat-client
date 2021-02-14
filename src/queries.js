@@ -74,6 +74,19 @@ export const GET_THEME_COMMENTS = gql`
   }
 `
 
+export const GET_LIKE_ORDER_THEME_COMMENTS = gql`
+  query likeOrderThemeComments($themeId: ID!, $skip: Int, $limit: Int) {
+    likeOrderThemeComments(themeId: $themeId, skip: $skip, limit: $limit) {
+      hasMore
+      comments {
+        _id
+        likes
+        radioName
+      }
+    }
+  }
+`
+
 export const GET_COMMENTS = gql`
   query getComments($skip: Int, $limit: Int) {
     comments(skip: $skip, limit: $limit) {

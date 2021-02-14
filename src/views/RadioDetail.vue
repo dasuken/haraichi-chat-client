@@ -49,9 +49,7 @@
                     </v-fade-transition>
                     <v-row align="center">
                       <v-col cols="5" md="12">
-                        <v-img :src="theme.thumbnail" aspect-ratio="1.3">
-                          
-                        </v-img>
+                        <v-img :src="theme.thumbnail" aspect-ratio="1.3"></v-img>
                       </v-col>
 
                       <v-col cols="7" md="12">
@@ -71,7 +69,15 @@
             </div>
           </div>
 
-          <h3 class="mt-12font-weight-black mt-10">リスナーの投稿</h3>
+          <h3 class="mt-12 d-flex align-center justify-space-between">
+            <div class="font-weight-black">
+              リスナーの投稿
+            </div>
+            <v-btn dark small>
+              <v-icon left small>trending_up</v-icon>
+              いいね！順
+            </v-btn>
+          </h3>
           <comments :selectedThemeId="selectedThemeId" />
         </v-col>
       </v-row>
@@ -101,7 +107,6 @@ export default {
     const selectedThemeId = ref(ctx.root.$store.getters['selectedThemeId']);
 
     watch(() => ctx.root.$store.getters['selectedThemeId'], () => {
-      console.log("store changed");
       selectedThemeId.value = ctx.root.$store.getters['selectedThemeId']
     })
 

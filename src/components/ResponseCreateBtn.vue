@@ -6,12 +6,11 @@
         small
         tile
         color="white grey--text"
-        class="mr-2 ml-n4 d-flex aling-center"
+        class="ml-n4 d-flex aling-center"
         elevation="0"
         v-on="on"
       >
         <v-icon dark>rate_review</v-icon>
-        コメントする
       </v-btn>
     </template>
 

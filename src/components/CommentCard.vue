@@ -4,15 +4,10 @@
       <div class="d-flex justify-space-between">
         <div>
           <span class="grey--text text-caption mr-2">RN:</span>
-          <v-chip
-            dark
-            small
-            label
-            class="text-caption font-weight-semibold"
-            :class="{ orange: checkIfCommentUser }"
-          >
+          <span class="text-overline font-weight-black">
             {{ comment.radioName }}
-          </v-chip>
+          </span>
+          <v-icon color="orange" v-if="checkIfCommentUser">account_circle</v-icon>
         </div>
         <div class="text-caption grey--text">
           {{ comment.createdAt | formatDateTime }}

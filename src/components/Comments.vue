@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-card class="mt-5 rounded-lg py-2">
-      {{ selectedThemeId }}
 
       <div class="text-center mb-2 py-3 font-weight-black mplus">
         {{ themeTitle }}

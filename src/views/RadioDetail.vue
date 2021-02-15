@@ -73,10 +73,6 @@
             <div class="font-weight-black">
               リスナーの投稿
             </div>
-            <v-btn dark small>
-              <v-icon left small>trending_up</v-icon>
-              いいね！順
-            </v-btn>
           </h3>
           <comments :selectedThemeId="selectedThemeId" />
         </v-col>

@@ -17,7 +17,7 @@ import SnackBar from '@/components/shared/SnackBar'
 export default {
   name: 'App',
   components: { Nav, Footer, SnackBar },
-  setup: (_, {root}) => {
+  setup: (_, { root }) => {
     function openSnackBar() {
       root.$store.commit('openSnackbar', "Snackbar起動！")
     }

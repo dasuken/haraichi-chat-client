@@ -16,7 +16,6 @@
     "uuid": "^8.3.2",
     "vue": "^2.6.11",
     "vue-apollo": "^3.0.0-beta.11",
-    "vue-plyr": "^7.0.0",
     "vue-router": "^3.2.0",
     "vue-youtube": "^1.4.0",
     "vuetify": "^2.2.11",

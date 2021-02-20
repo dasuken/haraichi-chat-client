@@ -20,7 +20,7 @@
                 <v-chip label dark color="orange" outlined class="mb-2">ラジオ一覧</v-chip>
               </h1>
               <v-row>
-                <v-col cols="6" sm="4" md="6" v-for="radio in radios" :key=radio._id>
+                <v-col cols="12" xs="6" sm="4" md="6" v-for="radio in radios" :key=radio._id>
                   <RadioCard :radio="radio" :latestRadioId="radios[0]._id" class="mb-6" />
                 </v-col>
               </v-row>

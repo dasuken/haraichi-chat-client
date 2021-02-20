@@ -1,11 +1,11 @@
 <template>
-  <v-app class="margin-x">
+  <v-app style="style=background-color: #fafafa;">
     <SnackBar />
     <Nav></Nav>
-    <transition name="fade" style="style=background-color: #fafafa;">
+    <transition name="fade">
       <router-view ></router-view>
     </transition>
-    <Footer class="margin-nx"></Footer>
+    <Footer></Footer>
   </v-app>
 </template>
 
@@ -33,7 +33,8 @@ a {
 }
 
 .margin-x {
-  margin-left: 20px;margin-right: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .margin-nx {
   margin-left: -20px!important;margin-right: -20px!important;

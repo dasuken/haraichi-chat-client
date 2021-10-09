@@ -2,7 +2,6 @@ import gql from 'graphql-tag'
 
 // Query
 
-// radio
 export const GET_RADIOS = gql`
   query getRadios {
     radios {
@@ -33,7 +32,6 @@ export const GET_RADIO = gql`
   }
 `
 
-// theme
 export const GET_THEME = gql`
   query getTheme($themeId: ID!) {
     theme(themeId: $themeId) {
@@ -57,7 +55,6 @@ export const GET_RADIO_THEMES = gql`
   }
 `
 
-// comment
 export const GET_THEME_COMMENTS = gql`
   query themeComments($themeId: ID!, $skip: Int, $limit: Int) {
     themeComments(themeId: $themeId, skip: $skip, limit: $limit) {
@@ -101,7 +98,6 @@ export const GET_COMMENTS = gql`
   }
 `
 
-// responses
 export const GET_COMMENT_RESPONSES = gql`
   query getCommentResponses($commentId: ID!) {
     commentResponses(commentId: $commentId) {
@@ -122,8 +118,6 @@ export const GET_COMMENT_RESPONSE_COUNTS = gql `
 `
 
 // mutation
-
-// comment
 
 export const CREATE_COMMENT = gql `
   mutation($radioName: String!, $message: String!, $themeId: ID!, $userId: ID) {
@@ -180,8 +174,6 @@ export const UNLIKE_COMMENT = gql`
     }
   }
 `
-
-// response
 
 export const CREATE_RESPONSE = gql`
   mutation mutateCreatResponse($commentId: ID!, $message: String!, $radioName: String!, $userId: ID) {
